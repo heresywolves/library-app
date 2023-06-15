@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,39 @@
   <title>Library</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  
+
+  <div class="new-book-form">
+    <div class="popup-container">
+    <button class="close-popup">x</button>
+      <fieldset class="new-book-info">
+        <legend>Book Info</legend>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required minlength="1">
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required minlength="1">
+        <label for="pages-number">Total pages:</label>
+        <input type="number" id="pages-number" name="pages" required minlength="1">
+      </fieldset>
+      <fieldset>
+        <legend>Current status</legend>
+        <div>
+          <input type="radio" id="complete" name="status" required>
+          <label for="complete">Complete</label>
+        </div>
+        <div>
+          <input type="radio" id="reading" name="status" required>
+          <label for="reading">Reading</label>
+        </div>
+        <div>
+          <input type="radio" id="want-to-read" name="status" required>
+          <label for="want-to-read">Want to read</label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
   <div class="header-container">
     <div class="header">
       <div class="logo">
@@ -20,17 +52,79 @@
   </div>
 
   <div class="main-container">
+    <div class="book-container">
+      <div class="book-item">
+        <div class="book">
+          <div class="line"></div>
+          <div class="book-info">
+            <h3 class="book-title">To kill the mockingbird</h3>
+            <p class="book-author">Harper Lee</p>
+          </div>
+        </div>
+        <p class="book-pages">256 pages</p>
+      </div>
+      <div class="book-item">
+        <div class="book">
+          <div class="line"></div>
+          <div class="book-info">
+            <h3 class="book-title">To kill the mockingbird</h3>
+            <p class="book-author">Harper Lee</p>
+          </div>
+        </div>
+        <p class="book-pages">256 pages</p>
+      </div>
+      <div class="book-item">
+        <div class="book">
+          <div class="line"></div>
+          <div class="book-info">
+            <h3 class="book-title">To kill the mockingbird</h3>
+            <p class="book-author">Harper Lee</p>
+          </div>
+        </div>
+        <p class="book-pages">256 pages</p>
+      </div>
+      <div class="book-item">
+        <div class="book">
+          <div class="line"></div>
+          <div class="book-info">
+            <h3 class="book-title">To kill the mockingbird</h3>
+            <p class="book-author">Harper Lee</p>
+          </div>
+        </div>
+        <p class="book-pages">256 pages</p>
+      </div>
+      <div class="book-item">
+        <div class="book">
+          <div class="line"></div>
+          <div class="book-info">
+            <h3 class="book-title">To kill the mockingbird</h3>
+            <p class="book-author">Harper Lee</p>
+          </div>
+        </div>
+        <p class="book-pages">256 pages</p>
+      </div>
 
-  </div>
-
-  <div class="side-panel-container">
+    </div>
+    <div class="side-panel-container">
+      <ul class="statistics-container">
+        <li class="stat-item">0 &nbsp; Books read</li>
+        <li class="stat-item">0 &nbsp; Total pages read</li>
+        <li class="stat-item">0 &nbsp; Planned books</li>
+        <li class="stat-item">0 &nbsp; Currently reading</li>
+        <li class="stat-item"></li>
+        <li class="stat-item"></li>
+      </ul>
+      <button class="new-book">New book</button>
+    </div>
 
   </div>
 
   <div class="footer-container">
-
+    <img src="img/github-mark-white.png" alt="Github logo" href="https://github.com/salem-dev-s">
+    <a target="_blank" href="https://github.com/salem-dev-s">salem-dev-s</a>
   </div>
 
   <script></script>
 </body>
+
 </html>

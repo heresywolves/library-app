@@ -5,6 +5,7 @@
   padding: 0;
   margin: 0;
   font-family: 'Gemunu Libre', sans-serif;
+  list-style: none;
 }
 
 :root {
@@ -25,10 +26,20 @@
   --red-500: #ef4444;
   --red-600: #dc2626;
   --red-700: #b91c1c;
+  ---new-book-button: rgb(122, 204, 122); 
+}
+
+body {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr minmax(600px, 1000px) 1fr ;
+  grid-template-rows: 60px 1fr 30px;
+  background-color: var(--slate-300);
 }
 
 .header-container {
   display: flex;
+  grid-column: 1 / -1;
   justify-content: center;
   background-color: var(--slate-950);
 }
@@ -75,4 +86,138 @@
 .header-container button:active {
   background-color: var(--slate-400);
   border: solid 1px var(--slate-950);
+}
+
+/* Main area */
+
+.main-container {
+  background-color: var(--slate-200);
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  padding: 50px;
+}
+
+.book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 120px));
+  grid-auto-rows: 200px;
+  gap: 30px;
+}
+
+.book {
+  background-color: var(--slate-800);
+  color: var(--slate-200);
+  height: 170px;
+  display: flex;
+  border-radius: 7px;
+}
+
+.book .line {
+  width: 5px;
+  background-color: var(--slate-200);
+  margin-left: 10px;
+}
+
+.book-info {
+  padding: 13px 0px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-info p {
+  font-size: 0.8rem;
+}
+
+.book-item .book-pages {
+  text-align: center;
+  color: var(--slate-800);
+  margin-top: 5px;
+}
+
+/* Side Panel */
+
+.side-panel-container {
+  background-color: var(--slate-300);
+  grid-template-columns: 2 / -1;
+  border: solid 50px var(--slate-200);
+  padding: 25px;
+  display: grid;
+  grid-template-rows: 1fr 50px;
+  height: 330px;
+}
+
+.side-panel-container button {
+  grid-row: 2 / -1;
+  border-style: none;
+  font-size: 1.3rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(---new-book-button);
+  transform: 0.3s;
+}
+
+.side-panel-container button:hover {
+  border: solid 2px rgb(110, 184, 110);
+}
+
+.side-panel-container button:active {
+  background-color: rgb(110, 184, 110);
+  border: solid 2px rgb(110, 184, 110);
+}
+
+.statistics-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Form popup */
+
+.new-book-form {
+  z-index: 10;
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+.new-book-form .popup-container {
+  width: 400px;
+  height: 500px;
+  margin: 10vh auto auto auto;
+  background-color: var(--slate-200);
+  border-radius: 5px;
+}
+
+.new-book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Footer */
+
+.footer-container {
+  background-color: var(--slate-950);
+  grid-row: 3 / -1;
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  color: var(--slate-200);
+  font-size: 1rem;
+}
+
+.footer-container a {
+  text-decoration: none;
+  color: var(--slate-200);
+}
+
+.footer-container img {
+  height: 15px;
 }
