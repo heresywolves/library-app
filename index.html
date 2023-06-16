@@ -11,17 +11,17 @@
 
 <body>
 
-  <div class="new-book-form">
+  <div class="new-book-form show">
     <div class="popup-container">
-    <button class="close-popup">x</button>
+      <button class="close-popup">&#10060;</button>
       <fieldset class="new-book-info">
         <legend>Book Info</legend>
-        <label for="title">Title:</label>
+        <label for="title" >Title:</label>
         <input type="text" id="title" name="title" required minlength="1">
         <label for="author">Author:</label>
         <input type="text" id="author" name="author" required minlength="1">
         <label for="pages-number">Total pages:</label>
-        <input type="number" id="pages-number" name="pages" required minlength="1">
+        <input type="number" id="pages-number" name="pages" required min="1" max="10000">
       </fieldset>
       <fieldset>
         <legend>Current status</legend>
@@ -38,6 +38,10 @@
           <label for="want-to-read">Want to read</label>
         </div>
       </fieldset>
+      <button class="submit-new-book">ADD</button>
+      <div class="form-validation">
+        <p>Please fill out all fields</p>
+      </div>
     </div>
   </div>
 
@@ -124,7 +128,8 @@
     <a target="_blank" href="https://github.com/salem-dev-s">salem-dev-s</a>
   </div>
 
-  <script></script>
+  <script src="popup.js"></script>
+  <script src="addbook.js"></script>
 </body>
 
 </html>

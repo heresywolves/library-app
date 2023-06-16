@@ -144,6 +144,7 @@ body {
   background-color: var(--slate-300);
   grid-template-columns: 2 / -1;
   border: solid 50px var(--slate-200);
+  border-right: 20px;
   padding: 25px;
   display: grid;
   grid-template-rows: 1fr 50px;
@@ -177,7 +178,12 @@ body {
 
 /* Form popup */
 
+.new-book-form.show{
+  display: none;
+}
+
 .new-book-form {
+  display: block;
   z-index: 10;
   background-color: rgba(0,0,0,0.4);
   position: absolute;
@@ -187,16 +193,97 @@ body {
 
 .new-book-form .popup-container {
   width: 400px;
-  height: 500px;
   margin: 10vh auto auto auto;
   background-color: var(--slate-200);
   border-radius: 5px;
+  padding: 10px 30px;
+  padding-bottom: 30px;
+  padding-top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .new-book-info {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
+  gap: 10px;
 }
+
+.new-book-info input:nth-child(7){
+  width: 60px;
+}
+
+.popup-container fieldset{
+  padding: 10px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+.popup-container label {
+  font-size: 1.1rem;
+}
+
+.popup-container input {
+  height: 30px;
+  font-size: 1.3rem;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.popup-container input.red {
+  outline: 2px solid red;
+}
+
+button.close-popup {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: solid 2px black;
+  font-size: 0.7rem;
+  position: relative;
+  left: 355px;
+  bottom: 15px;
+  cursor: pointer;
+}
+
+button.submit-new-book {
+  margin-top: 30px;
+  height: 50px;
+  border: none;
+  background-color: var(---new-book-button);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+button.submit-new-book:hover {
+  background-color: rgb(149, 216, 149);
+}
+
+button.submit-new-book:active {
+  background-color: rgb(77, 187, 77);
+}
+
+.popup-container fieldset div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-validation {
+  display: none;
+}
+
+.form-validation.form-validation-show{
+  display: block;
+  color: rgb(199, 0, 0);
+  margin-top: 15px;
+}
+
 
 
 /* Footer */
