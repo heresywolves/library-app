@@ -105,7 +105,7 @@ Book.prototype.addToPage = function() {
   book.appendChild(bookInfo);
   bookItem.appendChild(book);
   bookItem.appendChild(bookPages);
-  bookContainer.appendChild(bookItem);
+  bookContainer.prepend(bookItem);
 
   console.log("New book added");
   console.log(bookArray);

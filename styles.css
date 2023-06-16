@@ -26,7 +26,8 @@
   --red-500: #ef4444;
   --red-600: #dc2626;
   --red-700: #b91c1c;
-  ---new-book-button: rgb(122, 204, 122); 
+  --new-book-button: rgb(122, 204, 122); 
+  --planned-book: rgb(68, 117, 72);
 }
 
 body {
@@ -144,14 +145,13 @@ body {
 }
 
 .book-item.later .book {
-  background-color: rgb(68, 117, 72);
+  background-color: var(--planned-book);
 }
 
 /* Side Panel */
 
 .side-panel-container {
   background-color: var(--slate-300);
-  grid-template-columns: 2 / -1;
   border: solid 50px var(--slate-200);
   border-right: 20px;
   padding: 25px;
@@ -166,7 +166,7 @@ body {
   font-size: 1.3rem;
   border-radius: 4px;
   cursor: pointer;
-  background-color: var(---new-book-button);
+  background-color: var(--new-book-button);
   transform: 0.3s;
 }
 
@@ -185,6 +185,37 @@ body {
   gap: 10px;
 }
 
+ul.color-guide {
+  position: absolute;
+  top: 410px;
+  font-size: 0.8rem;
+}
+
+ul.color-guide .item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+ul.color-guide .color-box.planned-color {
+  background-color: var(--planned-book);
+  width: 10px;
+  height: 10px;
+}
+
+ul.color-guide .color-box.current-color{
+  background-color: var(--red-700);
+  width: 10px;
+  height: 10px;
+}
+
+ul.color-guide .color-box.read-color{
+  background-color: var(--slate-800);
+  width: 10px;
+  height: 10px;
+}
+
+
 /* Form popup */
 
 .new-book-form.show{
@@ -195,8 +226,8 @@ body {
   display: block;
   z-index: 10;
   background-color: rgba(0,0,0,0.4);
-  position: absolute;
-  height: 100vh;
+  position: fixed;
+  height: 100%;
   width: 100vw;
 }
 
@@ -261,7 +292,7 @@ button.submit-new-book {
   margin-top: 30px;
   height: 50px;
   border: none;
-  background-color: var(---new-book-button);
+  background-color: var(--new-book-button);
   font-size: 1.9rem;
   font-weight: 800;
   color: white;
