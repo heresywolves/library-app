@@ -26,15 +26,15 @@
       <fieldset>
         <legend>Current status</legend>
         <div>
-          <input type="radio" id="complete" name="status" required>
+          <input type="radio" value="complete" id="complete" name="status" required>
           <label for="complete">Complete</label>
         </div>
         <div>
-          <input type="radio" id="reading" name="status" required>
+          <input type="radio" value="reading" id="reading" name="status" required>
           <label for="reading">Reading</label>
         </div>
         <div>
-          <input type="radio" id="want-to-read" name="status" required>
+          <input type="radio" value="later" id="want-to-read" name="status" required>
           <label for="want-to-read">Want to read</label>
         </div>
       </fieldset>
@@ -111,12 +111,10 @@
     </div>
     <div class="side-panel-container">
       <ul class="statistics-container">
-        <li class="stat-item">0 &nbsp; Books read</li>
-        <li class="stat-item">0 &nbsp; Total pages read</li>
-        <li class="stat-item">0 &nbsp; Planned books</li>
-        <li class="stat-item">0 &nbsp; Currently reading</li>
-        <li class="stat-item"></li>
-        <li class="stat-item"></li>
+        <li class="stat-item" id="stat-read">0 &nbsp; Books read</li>
+        <li class="stat-item" id="stat-pages">0 &nbsp; Total pages read</li>
+        <li class="stat-item" id="stat-planned">0 &nbsp; Planned books</li>
+        <li class="stat-item" id="stat-current">0 &nbsp; Currently reading</li>
       </ul>
       <button class="new-book">New book</button>
     </div>

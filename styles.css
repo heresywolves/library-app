@@ -122,6 +122,7 @@ body {
 
 .book-info {
   padding: 13px 0px;
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -136,6 +137,14 @@ body {
   text-align: center;
   color: var(--slate-800);
   margin-top: 5px;
+}
+
+.book-item.reading .book{
+  background-color: var(--red-700);
+}
+
+.book-item.later .book {
+  background-color: rgb(68, 117, 72);
 }
 
 /* Side Panel */
