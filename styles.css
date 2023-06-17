@@ -148,6 +148,25 @@ body {
   background-color: var(--planned-book);
 }
 
+.book button.delete-book {
+  display: none;
+}
+
+.book button.delete-book.show {
+  display: block;
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  margin-left: 30px;
+  margin-top: 80px;
+  background-color: var(--red-600);
+  border-style: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+
 /* Side Panel */
 
 .side-panel-container {

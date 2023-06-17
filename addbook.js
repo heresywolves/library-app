@@ -8,6 +8,7 @@ const statRead = document.querySelector("#stat-read");
 const statPages = document.querySelector("#stat-pages");
 const statPlanned = document.querySelector("#stat-planned");
 const statCurrent = document.querySelector("#stat-current");
+const books = document.querySelectorAll(".book-item .book");
 let bookArray = [];
 
 // For form validation
@@ -137,3 +138,18 @@ function updateStat(pages, status) {
   statCurrent.innerText = "";
   statCurrent.innerText = `${countCurrentBooks}   Currently reading`;
 }
+
+// Showing action buttons on hover over books
+
+console.log(books);
+
+books.forEach(book => book.addEventListener('mouseover', function() {
+  const deleteButton = book.querySelector("button.delete-book");
+  deleteButton.classList.add('show');
+}));
+
+
+books.forEach(book => book.addEventListener('mouseleave', function() {
+  const deleteButton = book.querySelector("button.delete-book");
+  deleteButton.classList.remove('show');
+}));
