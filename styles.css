@@ -27,7 +27,7 @@
   --red-600: #dc2626;
   --red-700: #b91c1c;
   --new-book-button: rgb(122, 204, 122); 
-  --planned-book: rgb(68, 117, 72);
+  --current-book: rgb(91, 139, 91);
 }
 
 body {
@@ -108,7 +108,7 @@ body {
 }
 
 .book {
-  background-color: var(--slate-800);
+  background-color: var(--slate-950);
   color: var(--slate-200);
   height: 170px;
   display: flex;
@@ -141,11 +141,11 @@ body {
 }
 
 .book-item.reading .book{
-  background-color: var(--red-700);
+  background-color: var(--current-book);
 }
 
 .book-item.later .book {
-  background-color: var(--planned-book);
+  background-color: var(--slate-700);
 }
 
 .book button.delete-book {
@@ -158,12 +158,31 @@ body {
   width: 70px;
   height: 30px;
   margin-left: 30px;
-  margin-top: 80px;
+  margin-top: 105px;
   background-color: var(--red-600);
   border-style: none;
   border-radius: 4px;
   font-size: 1.1rem;
   cursor: pointer;
+}
+
+.book button.change-status {
+  display: none;
+}
+
+.book button.change-status.show {
+  display: block;
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  margin-left: 30px;
+  margin-top: 65px;
+  background-color: var(--new-book-button);
+  border-style: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+
 }
 
 
@@ -217,19 +236,19 @@ ul.color-guide .item {
 }
 
 ul.color-guide .color-box.planned-color {
-  background-color: var(--planned-book);
+  background-color: var(--slate-700);
   width: 10px;
   height: 10px;
 }
 
 ul.color-guide .color-box.current-color{
-  background-color: var(--red-700);
+  background-color: var(--current-book);
   width: 10px;
   height: 10px;
 }
 
 ul.color-guide .color-box.read-color{
-  background-color: var(--slate-800);
+  background-color: var(--slate-950);
   width: 10px;
   height: 10px;
 }

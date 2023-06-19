@@ -109,10 +109,15 @@ Book.prototype.addToPage = function () {
   deleteButton.classList.add('delete-book');
   deleteButton.innerText = 'Delete';
 
+  const statusButton = document.createElement('button');
+  statusButton.classList.add('change-status');
+  statusButton.innerText = 'Status';
+
   bookInfo.appendChild(bookTitle);
   bookInfo.appendChild(bookAuthor);
   book.appendChild(line);
   book.appendChild(bookInfo);
+  book.appendChild(statusButton);
   book.appendChild(deleteButton);
   bookItem.appendChild(book);
   bookItem.appendChild(bookPages);
@@ -161,13 +166,16 @@ function addEventsToBooks() {
   books.forEach(book => book.addEventListener('mouseover', function () {
     const deleteButton = book.querySelector("button.delete-book");
     deleteButton.classList.add('show');
-    // deleteButton.addEventListener('click', deleteBook(book));
+    const statusButton = book.querySelector("button.change-status");
+    statusButton.classList.add('show');
   }));
 
 
   books.forEach(book => book.addEventListener('mouseleave', function () {
     const deleteButton = book.querySelector("button.delete-book");
     deleteButton.classList.remove('show');
+    const statusButton = book.querySelector("button.change-status");
+    statusButton.classList.remove('show');
   }));
 
   // Delete book
