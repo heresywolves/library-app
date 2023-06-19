@@ -71,6 +71,24 @@ function Book(title, author, pages, status) {
   this.author = author;
   this.pages = pages
   this.status = status;
+  this.id = generateId();
+}
+
+function generateId() {
+  let id = 0;
+  let running = true;
+  while (running) {
+    id = Math.floor(Math.random() * 10000);
+    let changeId = false;
+    for (let i = 0; i < bookArray.length; i++) {
+      if (id === bookArray[i].id) {
+        changeId = true;
+      }
+    }
+    if (!changeId) {
+      return id;
+    }
+  }
 }
 
 Book.prototype.addToPage = function () {
@@ -79,7 +97,7 @@ Book.prototype.addToPage = function () {
 
   const bookItem = document.createElement('div');
   bookItem.classList.add("book-item");
-  bookItem.id = String(newIndex);
+  bookItem.id = this.id;
   if (this.status === "complete") { bookItem.classList.add("complete") }
   else if (this.status === "reading") { bookItem.classList.add("reading") }
   else { bookItem.classList.add("later") }
@@ -129,7 +147,8 @@ Book.prototype.addToPage = function () {
   addEventsToBooks();
 }
 
-function updateStat(pages, status) {
+
+function updateStat() {
   let countBooksRead = 0;
   let countTotalPages = 0;
   let countPlannedBooks = 0;
@@ -181,13 +200,53 @@ function addEventsToBooks() {
   // Delete book
 
   function deleteBook(button) {
-    button.closest('div.book-item').remove();
+    const book = button.closest('div.book-item');
+    
+    // The book has to be deleted from array as well as DOM
+    for (let i = 0; i < bookArray.length; i++) {
+      console.log('Book for deletion:', book.id);
+      console.log('Current itteration book:', bookArray[i].id);
+
+      if (book.id == bookArray[i].id) {
+        bookArray.splice(i, 1);
+        console.log('Removed index from array:', i);
+        book.remove();
+        return;
+      }
+    }
   }
 
   const deleteButtons = document.querySelectorAll("button.delete-book");
 
   deleteButtons.forEach(button => button.addEventListener("click", function () {
     deleteBook(button);
+  }));
+
+  // Status book
+
+  function changeStatus(button) {
+    const item = button.closest('div.book-item');
+    let currentStatus = item.className.split(" ")[1];
+    item.removeAttribute('class');
+    item.classList.add('book-item');
+
+    if (currentStatus === 'reading') {
+      item.classList.add('complete');
+    }
+    else if (currentStatus === 'complete') {
+      item.classList.add('later');
+    }
+    else {
+      item.classList.add('reading');
+    }
+
+  }
+
+  const statusButtons = document.querySelectorAll("button.change-status");
+
+  statusButtons.forEach(button => button.addEventListener("click", function () {
+    changeStatus(button);
+    updateStat();
   }));
 }
 

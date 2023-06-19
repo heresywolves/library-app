@@ -26,7 +26,7 @@
   --red-500: #ef4444;
   --red-600: #dc2626;
   --red-700: #b91c1c;
-  --new-book-button: rgb(122, 204, 122); 
+  --status-button: rgb(122, 204, 122); 
   --current-book: rgb(91, 139, 91);
 }
 
@@ -140,6 +140,10 @@ body {
   margin-top: 5px;
 }
 
+.book-item.complete .book {
+  background-color: var(--slate-950);
+}
+
 .book-item.reading .book{
   background-color: var(--current-book);
 }
@@ -177,7 +181,7 @@ body {
   height: 30px;
   margin-left: 30px;
   margin-top: 65px;
-  background-color: var(--new-book-button);
+  background-color: var(--status-button);
   border-style: none;
   border-radius: 4px;
   font-size: 1.1rem;
@@ -204,17 +208,18 @@ body {
   font-size: 1.3rem;
   border-radius: 4px;
   cursor: pointer;
-  background-color: var(--new-book-button);
+  background-color: var(--current-book);
+  color: white; 
+  font-weight: 700;
   transform: 0.3s;
 }
 
 .side-panel-container button:hover {
-  border: solid 2px rgb(110, 184, 110);
+  border: solid 2px rgb(85, 112, 85);
 }
 
 .side-panel-container button:active {
-  background-color: rgb(110, 184, 110);
-  border: solid 2px rgb(110, 184, 110);
+  background-color: rgb(104, 158, 104);
 }
 
 .statistics-container {
@@ -330,7 +335,7 @@ button.submit-new-book {
   margin-top: 30px;
   height: 50px;
   border: none;
-  background-color: var(--new-book-button);
+  background-color: var(--current-book);
   font-size: 1.9rem;
   font-weight: 800;
   color: white;
