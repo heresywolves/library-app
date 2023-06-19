@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,139 +7,127 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-
-  <div class="new-book-form show">
-    <div class="popup-container">
-      <button class="close-popup">&#10060;</button>
-      <fieldset class="new-book-info">
-        <legend>Book Info</legend>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required minlength="1">
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" required minlength="1">
-        <label for="pages-number">Total pages:</label>
-        <input type="number" id="pages-number" name="pages" required min="1" max="10000">
-      </fieldset>
-      <fieldset>
-        <legend>Current status</legend>
-        <div>
-          <input type="radio" value="complete" id="complete" name="status" required>
-          <label for="complete">Complete</label>
-        </div>
-        <div>
-          <input type="radio" value="reading" id="reading" name="status" required>
-          <label for="reading">Reading</label>
-        </div>
-        <div>
-          <input type="radio" value="later" id="want-to-read" name="status" required>
-          <label for="want-to-read">Want to read</label>
-        </div>
-      </fieldset>
-      <button class="submit-new-book">ADD</button>
-      <div class="form-validation">
-        <p>Please fill out all fields</p>
+<div class="new-book-form show">
+  <div class="popup-container">
+    <button class="close-popup">&#10060;</button>
+    <fieldset class="new-book-info">
+      <legend>Book Info</legend>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required minlength="1">
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required minlength="1">
+      <label for="pages-number">Total pages:</label>
+      <input type="number" id="pages-number" name="pages" required min="1" max="10000">
+    </fieldset>
+    <fieldset>
+      <legend>Current status</legend>
+      <div>
+        <input type="radio" value="complete" id="complete" name="status" required>
+        <label for="complete">Complete</label>
       </div>
+      <div>
+        <input type="radio" value="reading" id="reading" name="status" required>
+        <label for="reading">Reading</label>
+      </div>
+      <div>
+        <input type="radio" value="later" id="want-to-read" name="status" required>
+        <label for="want-to-read">Want to read</label>
+      </div>
+    </fieldset>
+    <button class="submit-new-book">ADD</button>
+    <div class="form-validation">
+      <p>Please fill out all fields</p>
     </div>
   </div>
+</div>
 
-  <div class="header-container">
-    <div class="header">
-      <div class="logo">
-        <img src="img/book-open-page-variant.svg" alt="Open book icon">
-        <h1>YOUR LIBRARY</h1>
-      </div>
-      <button>Log in</button>
+<div class="header-container">
+  <div class="header">
+    <div class="logo">
+      <img src="img/book-open-page-variant.svg" alt="Open book icon">
+      <h1>YOUR LIBRARY</h1>
     </div>
+    <button>Log in</button>
   </div>
+</div>
 
-  <div class="main-container">
-    <div class="book-container">
-      <div class="book-item">
-        <div class="book">
-          <div class="line"></div>
-          <div class="book-info">
-            <h3 class="book-title">To kill the mockingbird</h3>
-            <p class="book-author">Harper Lee</p>
-          </div>
-          <button class="delete-book">Delete</button>
+<div class="main-container">
+  <div class="book-container">
+    <div class="book-item">
+      <div class="book">
+        <div class="line"></div>
+        <div class="book-info">
+          <h3 class="book-title">To kill the mockingbird</h3>
+          <p class="book-author">Harper Lee</p>
         </div>
-        <p class="book-pages">256 pages</p>
+        <button class="delete-book">Delete</button>
       </div>
-      <div class="book-item">
-        <div class="book">
-          <div class="line"></div>
-          <div class="book-info">
-            <h3 class="book-title">To kill the mockingbird</h3>
-            <p class="book-author">Harper Lee</p>
-          </div>
-        </div>
-        <p class="book-pages">256 pages</p>
-      </div>
-      <div class="book-item">
-        <div class="book">
-          <div class="line"></div>
-          <div class="book-info">
-            <h3 class="book-title">To kill the mockingbird</h3>
-            <p class="book-author">Harper Lee</p>
-          </div>
-        </div>
-        <p class="book-pages">256 pages</p>
-      </div>
-      <div class="book-item">
-        <div class="book">
-          <div class="line"></div>
-          <div class="book-info">
-            <h3 class="book-title">To kill the mockingbird</h3>
-            <p class="book-author">Harper Lee</p>
-          </div>
-        </div>
-        <p class="book-pages">256 pages</p>
-      </div>
-      <div class="book-item">
-        <div class="book">
-          <div class="line"></div>
-          <div class="book-info">
-            <h3 class="book-title">To kill the mockingbird</h3>
-            <p class="book-author">Harper Lee</p>
-          </div>
-        </div>
-        <p class="book-pages">256 pages</p>
-      </div>
-
+      <p class="book-pages">256 pages</p>
     </div>
-    <div class="side-panel-container">
-      <ul class="statistics-container">
-        <li class="stat-item" id="stat-read">0 &nbsp; Books read</li>
-        <li class="stat-item" id="stat-pages">0 &nbsp; Total pages read</li>
-        <li class="stat-item" id="stat-planned">0 &nbsp; Planned books</li>
-        <li class="stat-item" id="stat-current">0 &nbsp; Currently reading</li>
-      </ul>
-      <button class="new-book">New book</button>
-      <ul class="color-guide">
-        <li class="item">
-          <div class="color-box current-color"></div>
-          <p>Currently reading</p>
-        </li>
-        <li class="item">
-          <div class="color-box read-color"></div>
-          <p>Books read</p>
-        </li>
-        <li class="item">
-          <div class="color-box planned-color"></div>
-          <p>For later</p>
-        </li>
-      </ul>
+    <div class="book-item">
+      <div class="book">
+        <div class="line"></div>
+        <div class="book-info">
+          <h3 class="book-title">To kill the mockingbird</h3>
+          <p class="book-author">Harper Lee</p>
+        </div>
+        <button class="delete-book">Delete</button>
+      </div>
+      <p class="book-pages">256 pages</p>
     </div>
+    <div class="book-item">
+      <div class="book">
+        <div class="line"></div>
+        <div class="book-info">
+          <h3 class="book-title">To kill the mockingbird</h3>
+          <p class="book-author">Harper Lee</p>
+        </div>
+        <button class="delete-book">Delete</button>
+      </div>
+      <p class="book-pages">256 pages</p>
+    </div>
+    <div class="book-item">
+      <div class="book">
+        <div class="line"></div>
+        <div class="book-info">
+          <h3 class="book-title">To kill the mockingbird</h3>
+          <p class="book-author">Harper Lee</p>
+        </div>
+        <button class="delete-book">Delete</button>
+      </div>
+      <p class="book-pages">256 pages</p>
+    </div>
+
   </div>
-
-  <div class="footer-container">
-    <img src="img/github-mark-white.png" alt="Github logo" href="https://github.com/salem-dev-s">
-    <a target="_blank" href="https://github.com/salem-dev-s">salem-dev-s</a>
+  <div class="side-panel-container">
+    <ul class="statistics-container">
+      <li class="stat-item" id="stat-read">0 &nbsp; Books read</li>
+      <li class="stat-item" id="stat-pages">0 &nbsp; Total pages read</li>
+      <li class="stat-item" id="stat-planned">0 &nbsp; Planned books</li>
+      <li class="stat-item" id="stat-current">0 &nbsp; Currently reading</li>
+    </ul>
+    <button class="new-book">New book</button>
+    <ul class="color-guide">
+      <li class="item">
+        <div class="color-box current-color"></div>
+        <p>Currently reading</p>
+      </li>
+      <li class="item">
+        <div class="color-box read-color"></div>
+        <p>Books read</p>
+      </li>
+      <li class="item">
+        <div class="color-box planned-color"></div>
+        <p>For later</p>
+      </li>
+    </ul>
   </div>
+</div>
 
-  <script src="popup.js"></script>
-  <script src="addbook.js"></script>
-</body>
+<div class="footer-container">
+  <img src="img/github-mark-white.png" alt="Github logo" href="https://github.com/salem-dev-s">
+  <a target="_blank" href="https://github.com/salem-dev-s">salem-dev-s</a>
+</div>
 
-</html>
+<script src="popup.js"></script>
+<script src="addbook.js"></script>

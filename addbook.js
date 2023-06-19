@@ -8,12 +8,15 @@ const statRead = document.querySelector("#stat-read");
 const statPages = document.querySelector("#stat-pages");
 const statPlanned = document.querySelector("#stat-planned");
 const statCurrent = document.querySelector("#stat-current");
-const books = document.querySelectorAll(".book-item .book");
 let bookArray = [];
+
+// Call this functiion so that all books have action buttons working on startup
+
+addEventsToBooks();
 
 // For form validation
 
-addBookButton.addEventListener("click", function() {
+addBookButton.addEventListener("click", function () {
   let formValid = true;
   if (!titleInput.value) {
     formValidationNotification.classList.add("form-validation-show");
@@ -32,10 +35,12 @@ addBookButton.addEventListener("click", function() {
   }
   let radioChecked = false;
   let statusChoice = "";
-  statusInput.forEach(el => {if (el.checked) {
-    radioChecked = true;
-    statusChoice = el.value;
-  }})
+  statusInput.forEach(el => {
+    if (el.checked) {
+      radioChecked = true;
+      statusChoice = el.value;
+    }
+  })
   if (!radioChecked) {
     formValidationNotification.classList.add("form-validation-show");
     formValid = false;
@@ -45,7 +50,7 @@ addBookButton.addEventListener("click", function() {
     titleInput.value = "";
     authorInput.value = "";
     pagesInput.value = "";
-    statusInput.forEach(el => {el.checked = false});
+    statusInput.forEach(el => { el.checked = false });
     popUpWindow.classList.toggle("show");
   }
 })
@@ -68,18 +73,18 @@ function Book(title, author, pages, status) {
   this.status = status;
 }
 
-Book.prototype.addToPage = function() {
+Book.prototype.addToPage = function () {
   let newIndex = bookArray.length;
   const bookContainer = document.querySelector("div .book-container");
 
   const bookItem = document.createElement('div');
   bookItem.classList.add("book-item");
   bookItem.id = String(newIndex);
-  if (this.status === "complete") {bookItem.classList.add("complete")}
-  else if (this.status === "reading") {bookItem.classList.add("reading")}
-  else {bookItem.classList.add("later")}
+  if (this.status === "complete") { bookItem.classList.add("complete") }
+  else if (this.status === "reading") { bookItem.classList.add("reading") }
+  else { bookItem.classList.add("later") }
 
-  const book =  document.createElement('div');
+  const book = document.createElement('div');
   book.classList.add("book");
 
   const line = document.createElement('div');
@@ -100,16 +105,23 @@ Book.prototype.addToPage = function() {
   bookPages.classList.add('book-pages');
   bookPages.innerText = `${this.pages} pages`;
 
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-book');
+  deleteButton.innerText = 'Delete';
+
   bookInfo.appendChild(bookTitle);
   bookInfo.appendChild(bookAuthor);
   book.appendChild(line);
   book.appendChild(bookInfo);
+  book.appendChild(deleteButton);
   bookItem.appendChild(book);
   bookItem.appendChild(bookPages);
   bookContainer.prepend(bookItem);
 
   console.log("New book added");
   console.log(bookArray);
+
+  addEventsToBooks();
 }
 
 function updateStat(pages, status) {
@@ -139,17 +151,35 @@ function updateStat(pages, status) {
   statCurrent.innerText = `${countCurrentBooks}   Currently reading`;
 }
 
-// Showing action buttons on hover over books
 
-console.log(books);
+function addEventsToBooks() {
 
-books.forEach(book => book.addEventListener('mouseover', function() {
-  const deleteButton = book.querySelector("button.delete-book");
-  deleteButton.classList.add('show');
-}));
+  // Showing action buttons on hover over books
+
+  const books = document.querySelectorAll(".book-item .book");
+
+  books.forEach(book => book.addEventListener('mouseover', function () {
+    const deleteButton = book.querySelector("button.delete-book");
+    deleteButton.classList.add('show');
+    // deleteButton.addEventListener('click', deleteBook(book));
+  }));
 
 
-books.forEach(book => book.addEventListener('mouseleave', function() {
-  const deleteButton = book.querySelector("button.delete-book");
-  deleteButton.classList.remove('show');
-}));
+  books.forEach(book => book.addEventListener('mouseleave', function () {
+    const deleteButton = book.querySelector("button.delete-book");
+    deleteButton.classList.remove('show');
+  }));
+
+  // Delete book
+
+  function deleteBook(button) {
+    button.closest('div.book-item').remove();
+  }
+
+  const deleteButtons = document.querySelectorAll("button.delete-book");
+
+  deleteButtons.forEach(button => button.addEventListener("click", function () {
+    deleteBook(button);
+  }));
+}
+
