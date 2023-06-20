@@ -14,6 +14,7 @@ let bookArray = [];
 
 addEventsToBooks();
 addButtonEvents();
+addSortButtonListeners();
 
 // Display empty library text if there is no books in array
 
@@ -75,8 +76,6 @@ function createBook(title, author, pages, status) {
   let book = new Book(title, author, pages, status);
   bookArray.push(book);
   book.addToPage();
-  sortBooks();
-  refreshBooks();
   updateStat(pages, status);
   toggleEmptyNotification();
 }
@@ -322,8 +321,15 @@ function changeStatus() {
     bookArray[arrayItemIndex].status = 'reading';
   }
 
-  sortBooks();
-  refreshBooks();
   updateStat();
 }
 
+function addSortButtonListeners() {
+  const button = document.querySelector('button.sort-button');
+  button.addEventListener('click', sortAndRefresh);
+}
+
+function sortAndRefresh() {
+  sortBooks();
+  refreshBooks();
+}

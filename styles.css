@@ -230,17 +230,30 @@ p.empty-notification.show {
 }
 
 .side-panel-container button:hover {
-  border: solid 2px rgb(85, 112, 85);
+  background-color: rgb(122, 160, 122);
 }
 
 .side-panel-container button:active {
-  background-color: rgb(104, 158, 104);
+  background-color: rgb(96, 116, 96);
 }
 
 .statistics-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+button.sort-button {
+  margin-left: 10px;
+  background-color: var(--slate-600);
+}
+
+button.sort-button:hover {
+  background-color: #6f7d91;
+}
+
+button.sort-button:active{
+  background-color: var(--slate-600);
 }
 
 ul.color-guide {
