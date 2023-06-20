@@ -62,6 +62,8 @@ function createBook(title, author, pages, status) {
   let book = new Book(title, author, pages, status);
   bookArray.push(book);
   book.addToPage();
+  sortBooks();
+  refreshBooks();
   updateStat(pages, status);
 }
 
@@ -141,9 +143,6 @@ Book.prototype.addToPage = function () {
   bookItem.appendChild(bookPages);
   bookContainer.prepend(bookItem);
 
-  console.log("New book added");
-  console.log(bookArray);
-
   // First remove previous events so there wont be event overlays - prevents bugs
   removeEventsFromBooks();
   addEventsToBooks();
@@ -181,6 +180,26 @@ function updateStat() {
 }
 
 
+function sortBooks() {
+  const currentBooks = bookArray.filter(item => item.status === 'reading'); 
+  const laterBooks = bookArray.filter(item => item.status === 'later')
+  const completeBooks = bookArray.filter(item => item.status === 'complete');
+  const newArray = completeBooks.concat(laterBooks.concat(currentBooks));
+  bookArray = [...newArray];
+}
+
+
+// Deletes all current books in the DOM and displays new ones according to the array
+function refreshBooks() {
+
+  const bookContainer = document.querySelector("div .book-container");
+  const bookItems = bookContainer.querySelectorAll(".book-item");
+  bookItems.forEach(item => item.remove());
+
+  bookArray.forEach(item => item.addToPage());
+}
+
+
 function showButtons(book) {
   const deleteButton = book.querySelector("button.delete-book");
   deleteButton.classList.add('show');
@@ -205,7 +224,6 @@ function addEventsToBooks() {
     book.addEventListener('mouseover', () => showButtons(book));
     book.addEventListener('mouseout', () => hideButtons(book));
   }
-  console.log('All event listeners of books added');
 }
 
 
@@ -217,7 +235,6 @@ function removeEventsFromBooks() {
     book.removeEventListener('mouseover', () => showButtons(book));
     book.removeEventListener('mouseout', () => hideButtons(book));
   }
-  console.log('All event listeners of books removed');
 }
 
 
@@ -229,7 +246,6 @@ function addButtonEvents() {
 
   const statusButtons = document.querySelectorAll('button.change-status');
   statusButtons.forEach(item => item.addEventListener('click', changeStatus));
-  console.log('All event listeners of buttons added');
 }
 
 function removeButtonEvents() {
@@ -238,7 +254,6 @@ function removeButtonEvents() {
 
   const statusButtons = document.querySelectorAll('button.change-status');
   statusButtons.forEach(item => item.removeEventListener('click', changeStatus));
-  console.log('All event listeners of buttons removed');
 }
 
 
@@ -249,12 +264,9 @@ function deleteBook() {
 
   // The book has to be deleted from array as well as DOM
   for (let i = 0; i < bookArray.length; i++) {
-    console.log('Book for deletion:', book.id);
-    console.log('Current itteration book:', bookArray[i].id);
 
     if (book.id == bookArray[i].id) {
       bookArray.splice(i, 1);
-      console.log('Removed index from array:', i);
       book.remove();
       updateStat();
       return;
@@ -278,7 +290,6 @@ function changeStatus() {
   let arrayItemIndex;
   for (let i = 0; i < bookArray.length; i++) {
     if (item.id == bookArray[i].id) {
-      console.log('change status for id', bookArray[i].id)
       arrayItemIndex = i;
     }
   }
@@ -295,7 +306,9 @@ function changeStatus() {
     item.classList.add('reading');
     bookArray[arrayItemIndex].status = 'reading';
   }
+
+  sortBooks();
+  refreshBooks();
   updateStat();
-  console.log('book status changed');
 }
 
