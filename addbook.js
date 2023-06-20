@@ -13,6 +13,7 @@ let bookArray = [];
 // Call this functiion so that all books have action buttons working on startup
 
 addEventsToBooks();
+addButtonEvents();
 
 // For form validation
 
@@ -92,7 +93,6 @@ function generateId() {
 }
 
 Book.prototype.addToPage = function () {
-  let newIndex = bookArray.length;
   const bookContainer = document.querySelector("div .book-container");
 
   const bookItem = document.createElement('div');
@@ -144,7 +144,12 @@ Book.prototype.addToPage = function () {
   console.log("New book added");
   console.log(bookArray);
 
+  // First remove previous events so there wont be event overlays - prevents bugs
+  removeEventsFromBooks();
   addEventsToBooks();
+
+  removeButtonEvents();
+  addButtonEvents();
 }
 
 
@@ -161,7 +166,7 @@ function updateStat() {
     else if (bookArray[i].status === "later") {
       countPlannedBooks++;
     }
-    else {
+    else if (bookArray[i].status === "reading") {
       countCurrentBooks++;
     }
   }
@@ -176,77 +181,121 @@ function updateStat() {
 }
 
 
+function showButtons(book) {
+  const deleteButton = book.querySelector("button.delete-book");
+  deleteButton.classList.add('show');
+  const statusButton = book.querySelector("button.change-status");
+  statusButton.classList.add('show');
+}
+
+
+function hideButtons(book) {
+  const deleteButton = book.querySelector("button.delete-book");
+  deleteButton.classList.remove('show');
+  const statusButton = book.querySelector("button.change-status");
+  statusButton.classList.remove('show');
+}
+
+
 function addEventsToBooks() {
+  const allBooks = document.querySelectorAll('.book-item');
 
-  // Showing action buttons on hover over books
-
-  const books = document.querySelectorAll(".book-item .book");
-
-  books.forEach(book => book.addEventListener('mouseover', function () {
-    const deleteButton = book.querySelector("button.delete-book");
-    deleteButton.classList.add('show');
-    const statusButton = book.querySelector("button.change-status");
-    statusButton.classList.add('show');
-  }));
+  for (let i = 0; i < allBooks.length; i++) {
+    const book = allBooks[i].querySelector('.book');
+    book.addEventListener('mouseover', () => showButtons(book));
+    book.addEventListener('mouseout', () => hideButtons(book));
+  }
+  console.log('All event listeners of books added');
+}
 
 
-  books.forEach(book => book.addEventListener('mouseleave', function () {
-    const deleteButton = book.querySelector("button.delete-book");
-    deleteButton.classList.remove('show');
-    const statusButton = book.querySelector("button.change-status");
-    statusButton.classList.remove('show');
-  }));
+function removeEventsFromBooks() {
+  const allBooks = document.querySelectorAll('.book-item');
 
-  // Delete book
+  for (let i = 0; i < allBooks.length; i++) {
+    const book = allBooks[i].querySelector('.book');
+    book.removeEventListener('mouseover', () => showButtons(book));
+    book.removeEventListener('mouseout', () => hideButtons(book));
+  }
+  console.log('All event listeners of books removed');
+}
 
-  function deleteBook(button) {
-    const book = button.closest('div.book-item');
-    
-    // The book has to be deleted from array as well as DOM
-    for (let i = 0; i < bookArray.length; i++) {
-      console.log('Book for deletion:', book.id);
-      console.log('Current itteration book:', bookArray[i].id);
 
-      if (book.id == bookArray[i].id) {
-        bookArray.splice(i, 1);
-        console.log('Removed index from array:', i);
-        book.remove();
-        return;
-      }
+// Event listeners for the buttons in each book
+function addButtonEvents() {
+
+  const deleteButtons = document.querySelectorAll('button.delete-book');
+  deleteButtons.forEach(item => item.addEventListener('click', deleteBook));
+
+  const statusButtons = document.querySelectorAll('button.change-status');
+  statusButtons.forEach(item => item.addEventListener('click', changeStatus));
+  console.log('All event listeners of buttons added');
+}
+
+function removeButtonEvents() {
+  const deleteButtons = document.querySelectorAll('button.delete-book');
+  deleteButtons.forEach(item => item.removeEventListener('click', deleteBook));
+
+  const statusButtons = document.querySelectorAll('button.change-status');
+  statusButtons.forEach(item => item.removeEventListener('click', changeStatus));
+  console.log('All event listeners of buttons removed');
+}
+
+
+// Delete book
+
+function deleteBook() {
+  const book = this.closest('div.book-item');
+
+  // The book has to be deleted from array as well as DOM
+  for (let i = 0; i < bookArray.length; i++) {
+    console.log('Book for deletion:', book.id);
+    console.log('Current itteration book:', bookArray[i].id);
+
+    if (book.id == bookArray[i].id) {
+      bookArray.splice(i, 1);
+      console.log('Removed index from array:', i);
+      book.remove();
+      updateStat();
+      return;
+    }
+  }
+}
+
+
+// Change status book
+
+function changeStatus() {
+  
+  const item = this.closest('div.book-item');
+  let currentStatus = item.className.split(" ")[1];
+  item.removeAttribute('class');
+  item.classList.add('book-item');
+
+
+  //Array search for changing the status in the array as well
+  //We need to find array item index to change its value later
+  let arrayItemIndex;
+  for (let i = 0; i < bookArray.length; i++) {
+    if (item.id == bookArray[i].id) {
+      console.log('change status for id', bookArray[i].id)
+      arrayItemIndex = i;
     }
   }
 
-  const deleteButtons = document.querySelectorAll("button.delete-book");
-
-  deleteButtons.forEach(button => button.addEventListener("click", function () {
-    deleteBook(button);
-  }));
-
-  // Status book
-
-  function changeStatus(button) {
-    const item = button.closest('div.book-item');
-    let currentStatus = item.className.split(" ")[1];
-    item.removeAttribute('class');
-    item.classList.add('book-item');
-
-    if (currentStatus === 'reading') {
-      item.classList.add('complete');
-    }
-    else if (currentStatus === 'complete') {
-      item.classList.add('later');
-    }
-    else {
-      item.classList.add('reading');
-    }
-
+  if (currentStatus === 'reading') {
+    item.classList.add('complete');
+    bookArray[arrayItemIndex].status = 'complete';
   }
-
-  const statusButtons = document.querySelectorAll("button.change-status");
-
-  statusButtons.forEach(button => button.addEventListener("click", function () {
-    changeStatus(button);
-    updateStat();
-  }));
+  else if (currentStatus === 'complete') {
+    item.classList.add('later');
+    bookArray[arrayItemIndex].status = 'later';
+  }
+  else {
+    item.classList.add('reading');
+    bookArray[arrayItemIndex].status = 'reading';
+  }
+  updateStat();
+  console.log('book status changed');
 }
 
