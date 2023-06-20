@@ -15,6 +15,19 @@ let bookArray = [];
 addEventsToBooks();
 addButtonEvents();
 
+// Display empty library text if there is no books in array
+
+function toggleEmptyNotification(){
+  const text = document.querySelector('p.empty-notification');
+  if (bookArray.length === 0) {
+    text.classList.add('show');
+  } else {
+    text.classList.remove('show');
+  }
+}
+
+toggleEmptyNotification();
+
 // For form validation
 
 addBookButton.addEventListener("click", function () {
@@ -65,6 +78,7 @@ function createBook(title, author, pages, status) {
   sortBooks();
   refreshBooks();
   updateStat(pages, status);
+  toggleEmptyNotification();
 }
 
 // Book object
@@ -269,6 +283,7 @@ function deleteBook() {
       bookArray.splice(i, 1);
       book.remove();
       updateStat();
+      toggleEmptyNotification();  
       return;
     }
   }

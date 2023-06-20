@@ -107,6 +107,21 @@ body {
   gap: 30px;
 }
 
+p.empty-notification {
+  display: none;
+}
+
+p.empty-notification.show {
+  display: block;
+  grid-column: 1 / -1;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--slate-400);
+}
+
 .book {
   background-color: var(--slate-950);
   color: var(--slate-200);
